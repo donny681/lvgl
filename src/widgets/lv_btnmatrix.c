@@ -16,7 +16,7 @@
 #include "../core/lv_refr.h"
 #include "../misc/lv_txt.h"
 #include "../misc/lv_txt_ap.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -76,7 +76,7 @@ const lv_obj_class_t lv_btnmatrix_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_btnmatrix_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -88,7 +88,7 @@ lv_obj_t * lv_btnmatrix_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_set_map(lv_obj_t * obj, const char * map[])
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -182,7 +182,7 @@ void lv_btnmatrix_set_map(lv_obj_t * obj, const char * map[])
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_set_ctrl_map(lv_obj_t * obj, const lv_btnmatrix_ctrl_t ctrl_map[])
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -192,7 +192,7 @@ void lv_btnmatrix_set_ctrl_map(lv_obj_t * obj, const lv_btnmatrix_ctrl_t ctrl_ma
 
     lv_btnmatrix_set_map(obj, btnm->map_p);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_set_selected_btn(lv_obj_t * obj, uint16_t btn_id)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -205,7 +205,7 @@ void lv_btnmatrix_set_selected_btn(lv_obj_t * obj, uint16_t btn_id)
     btnm->btn_id_sel = btn_id;
     invalidate_button_area(obj, btn_id);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_set_btn_ctrl(lv_obj_t * obj, uint16_t btn_id, lv_btnmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -221,7 +221,7 @@ void lv_btnmatrix_set_btn_ctrl(lv_obj_t * obj, uint16_t btn_id, lv_btnmatrix_ctr
     btnm->ctrl_bits[btn_id] |= ctrl;
     invalidate_button_area(obj, btn_id);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_clear_btn_ctrl(const lv_obj_t * obj, uint16_t btn_id, lv_btnmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -233,7 +233,7 @@ void lv_btnmatrix_clear_btn_ctrl(const lv_obj_t * obj, uint16_t btn_id, lv_btnma
     btnm->ctrl_bits[btn_id] &= (~ctrl);
     invalidate_button_area(obj, btn_id);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_set_btn_ctrl_all(lv_obj_t * obj, lv_btnmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -244,7 +244,7 @@ void lv_btnmatrix_set_btn_ctrl_all(lv_obj_t * obj, lv_btnmatrix_ctrl_t ctrl)
         lv_btnmatrix_set_btn_ctrl(obj, i, ctrl);
     }
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_clear_btn_ctrl_all(lv_obj_t * obj, lv_btnmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -255,7 +255,7 @@ void lv_btnmatrix_clear_btn_ctrl_all(lv_obj_t * obj, lv_btnmatrix_ctrl_t ctrl)
         lv_btnmatrix_clear_btn_ctrl(obj, i, ctrl);
     }
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_set_btn_width(lv_obj_t * obj, uint16_t btn_id, uint8_t width)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -267,7 +267,7 @@ void lv_btnmatrix_set_btn_width(lv_obj_t * obj, uint16_t btn_id, uint8_t width)
 
     lv_btnmatrix_set_map(obj, btnm->map_p);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_btnmatrix_set_one_checked(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -282,7 +282,7 @@ void lv_btnmatrix_set_one_checked(lv_obj_t * obj, bool en)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 const char ** lv_btnmatrix_get_map(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -290,7 +290,7 @@ const char ** lv_btnmatrix_get_map(const lv_obj_t * obj)
     lv_btnmatrix_t * btnm = (lv_btnmatrix_t *)obj;;
     return btnm->map_p;
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_btnmatrix_get_selected_btn(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -298,7 +298,7 @@ uint16_t lv_btnmatrix_get_selected_btn(const lv_obj_t * obj)
     lv_btnmatrix_t * btnm = (lv_btnmatrix_t *)obj;;
     return btnm->btn_id_sel;
 }
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_btnmatrix_get_btn_text(const lv_obj_t * obj, uint16_t btn_id)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -323,7 +323,7 @@ const char * lv_btnmatrix_get_btn_text(const lv_obj_t * obj, uint16_t btn_id)
 
     return btnm->map_p[txt_i];
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_btnmatrix_has_btn_ctrl(lv_obj_t * obj, uint16_t btn_id, lv_btnmatrix_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -333,7 +333,7 @@ bool lv_btnmatrix_has_btn_ctrl(lv_obj_t * obj, uint16_t btn_id, lv_btnmatrix_ctr
 
     return (btnm->ctrl_bits[btn_id] & ctrl) ? true : false;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_btnmatrix_get_one_checked(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

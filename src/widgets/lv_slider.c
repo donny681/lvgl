@@ -16,7 +16,7 @@
 #include "../misc/lv_math.h"
 #include "../core/lv_disp.h"
 #include "lv_img.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -55,7 +55,7 @@ const lv_obj_class_t lv_slider_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_slider_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -63,7 +63,7 @@ lv_obj_t * lv_slider_create(lv_obj_t * parent)
     lv_obj_class_init_obj(obj);
     return obj;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_slider_is_dragged(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

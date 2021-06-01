@@ -11,7 +11,7 @@
 #if LV_USE_BTN != 0
 
 #include "../extra/layouts/flex/lv_flex.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -45,7 +45,7 @@ const lv_obj_class_t lv_btn_class  = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_btn_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")

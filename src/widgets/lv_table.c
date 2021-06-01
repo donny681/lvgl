@@ -16,7 +16,7 @@
 #include "../misc/lv_math.h"
 #include "../misc/lv_printf.h"
 #include "../draw/lv_draw.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -60,7 +60,7 @@ const lv_obj_class_t lv_table_class  = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_table_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -72,7 +72,7 @@ lv_obj_t * lv_table_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_table_set_cell_value(lv_obj_t * obj, uint16_t row, uint16_t col, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -108,7 +108,7 @@ void lv_table_set_cell_value(lv_obj_t * obj, uint16_t row, uint16_t col, const c
     table->cell_data[cell][0] = ctrl;
     refr_size(obj, row);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_table_set_cell_value_fmt(lv_obj_t * obj, uint16_t row, uint16_t col, const char * fmt, ...)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -197,7 +197,7 @@ void lv_table_set_cell_value_fmt(lv_obj_t * obj, uint16_t row, uint16_t col, con
 
     table->row_h[row] = LV_CLAMP(minh, h, maxh);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_table_set_row_cnt(lv_obj_t * obj, uint16_t row_cnt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -233,7 +233,7 @@ void lv_table_set_row_cnt(lv_obj_t * obj, uint16_t row_cnt)
 
     refr_size(obj, 0) ;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_table_set_col_cnt(lv_obj_t * obj, uint16_t col_cnt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -287,7 +287,7 @@ void lv_table_set_col_cnt(lv_obj_t * obj, uint16_t col_cnt)
 
     refr_size(obj, 0) ;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_table_set_col_width(lv_obj_t * obj, uint16_t col_id, lv_coord_t w)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -300,7 +300,7 @@ void lv_table_set_col_width(lv_obj_t * obj, uint16_t col_id, lv_coord_t w)
     table->col_w[col_id] = w;
     refr_size(obj, 0) ;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_table_add_cell_ctrl(lv_obj_t * obj, uint16_t row, uint16_t col, lv_table_cell_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -324,7 +324,7 @@ void lv_table_add_cell_ctrl(lv_obj_t * obj, uint16_t row, uint16_t col, lv_table
 
     table->cell_data[cell][0] |= ctrl;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_table_clear_cell_ctrl(lv_obj_t * obj, uint16_t row, uint16_t col, lv_table_cell_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -352,7 +352,7 @@ void lv_table_clear_cell_ctrl(lv_obj_t * obj, uint16_t row, uint16_t col, lv_tab
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_table_get_cell_value(lv_obj_t * obj, uint16_t row, uint16_t col)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -368,7 +368,7 @@ const char * lv_table_get_cell_value(lv_obj_t * obj, uint16_t row, uint16_t col)
 
     return &table->cell_data[cell][1]; /*Skip the format byte*/
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_table_get_row_cnt(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -376,7 +376,7 @@ uint16_t lv_table_get_row_cnt(lv_obj_t * obj)
     lv_table_t * table = (lv_table_t *)obj;
     return table->row_cnt;
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_table_get_col_cnt(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -384,7 +384,7 @@ uint16_t lv_table_get_col_cnt(lv_obj_t * obj)
     lv_table_t * table = (lv_table_t *)obj;
     return table->col_cnt;
 }
-
+EMSCRIPTEN_KEEPALIVE
 lv_coord_t lv_table_get_col_width(lv_obj_t * obj, uint16_t col)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -398,7 +398,7 @@ lv_coord_t lv_table_get_col_width(lv_obj_t * obj, uint16_t col)
 
     return table->col_w[col];
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_table_has_cell_ctrl(lv_obj_t * obj, uint16_t row, uint16_t col, lv_table_cell_ctrl_t ctrl)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -413,7 +413,7 @@ bool lv_table_has_cell_ctrl(lv_obj_t * obj, uint16_t row, uint16_t col, lv_table
     if(table->cell_data[cell] == NULL) return false;
     else return (table->cell_data[cell][0] & ctrl) == ctrl ? true : false;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_table_get_selected_cell(lv_obj_t * obj, uint16_t * row, uint16_t * col)
 {
     lv_table_t * table = (lv_table_t *)obj;

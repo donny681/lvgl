@@ -11,7 +11,7 @@
 #include "../misc/lv_math.h"
 #include "../draw/lv_draw.h"
 #include "../core/lv_refr.h"
-
+#include<emscripten.h>
 #if LV_USE_CANVAS != 0
 
 /*********************
@@ -63,7 +63,7 @@ const lv_obj_class_t lv_canvas_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_canvas_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -75,7 +75,7 @@ lv_obj_t * lv_canvas_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_set_buffer(lv_obj_t * obj, void * buf, lv_coord_t w, lv_coord_t h, lv_img_cf_t cf)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -90,7 +90,7 @@ void lv_canvas_set_buffer(lv_obj_t * obj, void * buf, lv_coord_t w, lv_coord_t h
 
     lv_img_set_src(obj, &canvas->dsc);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_set_px(lv_obj_t * obj, lv_coord_t x, lv_coord_t y, lv_color_t c)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -100,7 +100,7 @@ void lv_canvas_set_px(lv_obj_t * obj, lv_coord_t x, lv_coord_t y, lv_color_t c)
     lv_img_buf_set_px_color(&canvas->dsc, x, y, c);
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_set_palette(lv_obj_t * obj, uint8_t id, lv_color_t c)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -114,7 +114,7 @@ void lv_canvas_set_palette(lv_obj_t * obj, uint8_t id, lv_color_t c)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 lv_color_t lv_canvas_get_px(lv_obj_t * obj, lv_coord_t x, lv_coord_t y)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -124,7 +124,7 @@ lv_color_t lv_canvas_get_px(lv_obj_t * obj, lv_coord_t x, lv_coord_t y)
 
     return lv_img_buf_get_px_color(&canvas->dsc, x, y, color);
 }
-
+EMSCRIPTEN_KEEPALIVE
 lv_img_dsc_t * lv_canvas_get_img(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -136,7 +136,7 @@ lv_img_dsc_t * lv_canvas_get_img(lv_obj_t * obj)
 /*=====================
  * Other functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_copy_buf(lv_obj_t * obj, const void * to_copy, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -159,7 +159,7 @@ void lv_canvas_copy_buf(lv_obj_t * obj, const void * to_copy, lv_coord_t x, lv_c
         to_copy8 += w * px_size;
     }
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_transform(lv_obj_t * obj, lv_img_dsc_t * img, int16_t angle, uint16_t zoom, lv_coord_t offset_x,
                          lv_coord_t offset_y,
                          int32_t pivot_x, int32_t pivot_y, bool antialias)
@@ -262,7 +262,7 @@ void lv_canvas_transform(lv_obj_t * obj, lv_img_dsc_t * img, int16_t angle, uint
     LV_LOG_WARN("Can't transform canvas with LV_DRAW_COMPLEX == 0");
 #endif
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_blur_hor(lv_obj_t * obj, const lv_area_t * area, uint16_t r)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -390,7 +390,7 @@ void lv_canvas_blur_hor(lv_obj_t * obj, const lv_area_t * area, uint16_t r)
 
     lv_mem_buf_release(line_buf);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_blur_ver(lv_obj_t * obj, const lv_area_t * area, uint16_t r)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -524,6 +524,7 @@ void lv_canvas_blur_ver(lv_obj_t * obj, const lv_area_t * area, uint16_t r)
     lv_mem_buf_release(col_buf);
 }
 
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_fill_bg(lv_obj_t * canvas, lv_color_t color, lv_opa_t opa)
 {
     LV_ASSERT_OBJ(canvas, MY_CLASS);
@@ -552,7 +553,7 @@ void lv_canvas_fill_bg(lv_obj_t * canvas, lv_color_t color, lv_opa_t opa)
 
     lv_obj_invalidate(canvas);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_draw_rect(lv_obj_t * canvas, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h,
                          const lv_draw_rect_dsc_t * draw_dsc)
 {
@@ -613,7 +614,7 @@ void lv_canvas_draw_rect(lv_obj_t * canvas, lv_coord_t x, lv_coord_t y, lv_coord
 
     lv_obj_invalidate(canvas);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_draw_text(lv_obj_t * canvas, lv_coord_t x, lv_coord_t y, lv_coord_t max_w,
                          lv_draw_label_dsc_t * draw_dsc, const char * txt)
 {
@@ -667,7 +668,7 @@ void lv_canvas_draw_text(lv_obj_t * canvas, lv_coord_t x, lv_coord_t y, lv_coord
 
     lv_obj_invalidate(canvas);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_draw_img(lv_obj_t * canvas, lv_coord_t x, lv_coord_t y, const void * src,
                         const lv_draw_img_dsc_t * draw_dsc)
 {
@@ -728,7 +729,7 @@ void lv_canvas_draw_img(lv_obj_t * canvas, lv_coord_t x, lv_coord_t y, const voi
 
     lv_obj_invalidate(canvas);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_draw_line(lv_obj_t * canvas, const lv_point_t points[], uint32_t point_cnt,
                          const lv_draw_line_dsc_t * draw_dsc)
 {
@@ -785,7 +786,7 @@ void lv_canvas_draw_line(lv_obj_t * canvas, const lv_point_t points[], uint32_t 
 
     lv_obj_invalidate(canvas);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_draw_polygon(lv_obj_t * canvas, const lv_point_t points[], uint32_t point_cnt,
                             const lv_draw_rect_dsc_t * draw_dsc)
 {
@@ -840,7 +841,7 @@ void lv_canvas_draw_polygon(lv_obj_t * canvas, const lv_point_t points[], uint32
 
     lv_obj_invalidate(canvas);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_canvas_draw_arc(lv_obj_t * canvas, lv_coord_t x, lv_coord_t y, lv_coord_t r, int32_t start_angle,
                         int32_t end_angle, const lv_draw_arc_dsc_t * draw_dsc)
 {

@@ -15,7 +15,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -50,7 +50,7 @@ const lv_obj_class_t lv_line_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_line_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -62,7 +62,7 @@ lv_obj_t * lv_line_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_line_set_points(lv_obj_t * obj, const lv_point_t points[], uint16_t point_num)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -75,7 +75,7 @@ void lv_line_set_points(lv_obj_t * obj, const lv_point_t points[], uint16_t poin
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_line_set_y_invert(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -91,7 +91,7 @@ void lv_line_set_y_invert(lv_obj_t * obj, bool en)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_line_get_y_invert(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

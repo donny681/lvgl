@@ -3,6 +3,7 @@
  *
  */
 
+
 /*********************
  *      INCLUDES
  *********************/
@@ -13,7 +14,7 @@
 #include "../draw/lv_draw.h"
 #include "../misc/lv_anim.h"
 #include "../misc/lv_math.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -74,7 +75,7 @@ const lv_obj_class_t lv_bar_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_bar_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -86,7 +87,7 @@ lv_obj_t * lv_bar_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_bar_set_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -100,7 +101,7 @@ void lv_bar_set_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim)
     if(bar->cur_value == value) return;
     lv_bar_set_value_with_anim(obj, value, &bar->cur_value, &bar->cur_value_anim, anim);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_bar_set_start_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -113,7 +114,7 @@ void lv_bar_set_start_value(lv_obj_t * obj, int32_t value, lv_anim_enable_t anim
     if(bar->start_value == value) return;
     lv_bar_set_value_with_anim(obj, value, &bar->start_value, &bar->start_value_anim, anim);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_bar_set_range(lv_obj_t * obj, int32_t min, int32_t max)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -138,7 +139,7 @@ void lv_bar_set_range(lv_obj_t * obj, int32_t min, int32_t max)
     }
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_bar_set_mode(lv_obj_t * obj, lv_bar_mode_t mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -155,7 +156,7 @@ void lv_bar_set_mode(lv_obj_t * obj, lv_bar_mode_t mode)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 int32_t lv_bar_get_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -163,7 +164,7 @@ int32_t lv_bar_get_value(const lv_obj_t * obj)
 
     return LV_BAR_GET_ANIM_VALUE(bar->cur_value, bar->cur_value_anim);
 }
-
+EMSCRIPTEN_KEEPALIVE
 int32_t lv_bar_get_start_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -173,14 +174,14 @@ int32_t lv_bar_get_start_value(const lv_obj_t * obj)
 
     return LV_BAR_GET_ANIM_VALUE(bar->start_value, bar->start_value_anim);
 }
-
+EMSCRIPTEN_KEEPALIVE
 int32_t lv_bar_get_min_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     lv_bar_t * bar = (lv_bar_t *)obj;
     return bar->min_value;
 }
-
+EMSCRIPTEN_KEEPALIVE
 int32_t lv_bar_get_max_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -188,7 +189,7 @@ int32_t lv_bar_get_max_value(const lv_obj_t * obj)
 
     return bar->max_value;
 }
-
+EMSCRIPTEN_KEEPALIVE
 lv_bar_mode_t lv_bar_get_mode(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

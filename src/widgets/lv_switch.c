@@ -20,7 +20,7 @@
 #include "../core/lv_indev.h"
 #include "../core/lv_disp.h"
 #include "lv_img.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -57,7 +57,7 @@ const lv_obj_class_t lv_switch_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_switch_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")

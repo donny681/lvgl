@@ -18,7 +18,7 @@
 #include "../misc/lv_anim.h"
 #include "../misc/lv_txt.h"
 #include "../misc/lv_math.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -80,7 +80,7 @@ static const char * ta_insert_replace;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_textarea_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -92,7 +92,7 @@ lv_obj_t * lv_textarea_create(lv_obj_t * parent)
 /*======================
  * Add/remove functions
  *=====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_add_char(lv_obj_t * obj, uint32_t c)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -166,7 +166,7 @@ void lv_textarea_add_char(lv_obj_t * obj, uint32_t c)
 
     lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_add_text(lv_obj_t * obj, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -228,7 +228,7 @@ void lv_textarea_add_text(lv_obj_t * obj, const char * txt)
 
     lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_del_char(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -272,7 +272,7 @@ void lv_textarea_del_char(lv_obj_t * obj)
     lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_del_char_forward(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -285,7 +285,7 @@ void lv_textarea_del_char_forward(lv_obj_t * obj)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_text(lv_obj_t * obj, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -345,7 +345,7 @@ void lv_textarea_set_text(lv_obj_t * obj, const char * txt)
 
     lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_placeholder_text(lv_obj_t * obj, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -381,7 +381,7 @@ void lv_textarea_set_placeholder_text(lv_obj_t * obj, const char * txt)
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_cursor_pos(lv_obj_t * obj, int32_t pos)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -426,7 +426,7 @@ void lv_textarea_set_cursor_pos(lv_obj_t * obj, int32_t pos)
 
     refr_cursor_area(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_cursor_click_pos(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -434,7 +434,7 @@ void lv_textarea_set_cursor_click_pos(lv_obj_t * obj, bool en)
     lv_textarea_t * ta = (lv_textarea_t *)obj;
     ta->cursor.click_pos = en ? 1 : 0;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_password_mode(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -467,7 +467,7 @@ void lv_textarea_set_password_mode(lv_obj_t * obj, bool en)
 
     refr_cursor_area(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_one_line(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -493,7 +493,7 @@ void lv_textarea_set_one_line(lv_obj_t * obj, bool en)
         lv_obj_scroll_to(obj, 0, 0, LV_ANIM_OFF);
     }
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_accepted_chars(lv_obj_t * obj, const char * list)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -502,7 +502,7 @@ void lv_textarea_set_accepted_chars(lv_obj_t * obj, const char * list)
 
     ta->accepted_chars = list;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_max_length(lv_obj_t * obj, uint32_t num)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -511,7 +511,7 @@ void lv_textarea_set_max_length(lv_obj_t * obj, uint32_t num)
 
     ta->max_length = num;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_insert_replace(lv_obj_t * obj, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -519,7 +519,7 @@ void lv_textarea_set_insert_replace(lv_obj_t * obj, const char * txt)
     LV_UNUSED(obj);
     ta_insert_replace = txt;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_text_selection(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -535,7 +535,7 @@ void lv_textarea_set_text_selection(lv_obj_t * obj, bool en)
     (void)en; /*Unused*/
 #endif
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_password_show_time(lv_obj_t * obj, uint16_t time)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -543,7 +543,7 @@ void lv_textarea_set_password_show_time(lv_obj_t * obj, uint16_t time)
     lv_textarea_t * ta = (lv_textarea_t *)obj;
     ta->pwd_show_time = time;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_set_align(lv_obj_t * obj, lv_text_align_t align)
 {
     lv_obj_set_style_text_align(obj, align, 0);
@@ -565,7 +565,7 @@ void lv_textarea_set_align(lv_obj_t * obj, lv_text_align_t align)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_textarea_get_text(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -582,7 +582,7 @@ const char * lv_textarea_get_text(const lv_obj_t * obj)
 
     return txt;
 }
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_textarea_get_placeholder_text(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -591,7 +591,7 @@ const char * lv_textarea_get_placeholder_text(lv_obj_t * obj)
     if(ta->placeholder_txt) return ta->placeholder_txt;
     else return "";
 }
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_textarea_get_label(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -599,7 +599,7 @@ lv_obj_t * lv_textarea_get_label(const lv_obj_t * obj)
      lv_textarea_t * ta = (lv_textarea_t *)obj;
     return ta->label;
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint32_t lv_textarea_get_cursor_pos(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -607,7 +607,7 @@ uint32_t lv_textarea_get_cursor_pos(const lv_obj_t * obj)
      lv_textarea_t * ta = (lv_textarea_t *)obj;
     return ta->cursor.pos;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_textarea_get_cursor_click_pos(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -615,7 +615,7 @@ bool lv_textarea_get_cursor_click_pos(lv_obj_t * obj)
      lv_textarea_t * ta = (lv_textarea_t *)obj;
     return ta->cursor.click_pos ? true : false;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_textarea_get_password_mode(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -623,7 +623,7 @@ bool lv_textarea_get_password_mode(const lv_obj_t * obj)
      lv_textarea_t * ta = (lv_textarea_t *)obj;
     return ta->pwd_mode == 0 ? false : true;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_textarea_get_one_line(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -631,7 +631,7 @@ bool lv_textarea_get_one_line(const lv_obj_t * obj)
      lv_textarea_t * ta = (lv_textarea_t *)obj;
     return ta->one_line == 0 ? false : true;
 }
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_textarea_get_accepted_chars(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -640,7 +640,7 @@ const char * lv_textarea_get_accepted_chars(lv_obj_t * obj)
 
     return ta->accepted_chars;
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint32_t lv_textarea_get_max_length(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -648,7 +648,7 @@ uint32_t lv_textarea_get_max_length(lv_obj_t * obj)
      lv_textarea_t * ta = (lv_textarea_t *)obj;
     return ta->max_length;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_textarea_text_is_selected(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -668,7 +668,7 @@ bool lv_textarea_text_is_selected(const lv_obj_t * obj)
     return false;
 #endif
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_textarea_get_text_selection(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -681,7 +681,7 @@ bool lv_textarea_get_text_selection(lv_obj_t * obj)
     return false;
 #endif
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_textarea_get_password_show_time(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -694,7 +694,7 @@ uint16_t lv_textarea_get_password_show_time(lv_obj_t * obj)
 /*=====================
  * Other functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_clear_selection(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -711,7 +711,7 @@ void lv_textarea_clear_selection(lv_obj_t * obj)
     (void)obj; /*Unused*/
 #endif
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_cursor_right(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -720,7 +720,7 @@ void lv_textarea_cursor_right(lv_obj_t * obj)
     cp++;
     lv_textarea_set_cursor_pos(obj, cp);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_cursor_left(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -731,7 +731,7 @@ void lv_textarea_cursor_left(lv_obj_t * obj)
         lv_textarea_set_cursor_pos(obj, cp);
     }
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_cursor_down(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -760,7 +760,7 @@ void lv_textarea_cursor_down(lv_obj_t * obj)
         ta->cursor.valid_x = cur_valid_x_tmp;
     }
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_textarea_cursor_up(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

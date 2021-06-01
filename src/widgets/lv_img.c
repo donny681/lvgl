@@ -15,7 +15,7 @@
 #include "../misc/lv_txt.h"
 #include "../misc/lv_math.h"
 #include "../misc/lv_log.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -53,7 +53,7 @@ const lv_obj_class_t lv_img_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_img_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -65,7 +65,7 @@ lv_obj_t * lv_img_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_img_set_src(lv_obj_t * obj, const void * src)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -158,7 +158,7 @@ void lv_img_set_src(lv_obj_t * obj, const void * src)
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_img_set_offset_x(lv_obj_t * obj, lv_coord_t x)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -170,7 +170,7 @@ void lv_img_set_offset_x(lv_obj_t * obj, lv_coord_t x)
     img->offset.x = x;
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_img_set_offset_y(lv_obj_t * obj, lv_coord_t y)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -182,7 +182,7 @@ void lv_img_set_offset_y(lv_obj_t * obj, lv_coord_t y)
     img->offset.y = y;
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_img_set_angle(lv_obj_t * obj, int16_t angle)
 {
     if(angle < 0 || angle >= 3600) angle = angle % 3600;
@@ -215,7 +215,7 @@ void lv_img_set_angle(lv_obj_t * obj, int16_t angle)
     a.y2 += obj->coords.y1;
     lv_obj_invalidate_area(obj, &a);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_img_set_pivot(lv_obj_t * obj, lv_coord_t x, lv_coord_t y)
 {
     lv_img_t * img = (lv_img_t *)obj;
@@ -248,7 +248,7 @@ void lv_img_set_pivot(lv_obj_t * obj, lv_coord_t x, lv_coord_t y)
     a.y2 += obj->coords.y1;
     lv_obj_invalidate_area(obj, &a);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_img_set_zoom(lv_obj_t * obj, uint16_t zoom)
 {
    lv_img_t * img = (lv_img_t *)obj;
@@ -281,7 +281,7 @@ void lv_img_set_zoom(lv_obj_t * obj, uint16_t zoom)
     a.y2 += obj->coords.y1 + 1;
     lv_obj_invalidate_area(obj, &a);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_img_set_antialias(lv_obj_t * obj, bool antialias)
 {
    lv_img_t * img = (lv_img_t *)obj;
@@ -294,7 +294,7 @@ void lv_img_set_antialias(lv_obj_t * obj, bool antialias)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 const void * lv_img_get_src(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -303,7 +303,7 @@ const void * lv_img_get_src(lv_obj_t * obj)
 
     return img->src;
 }
-
+EMSCRIPTEN_KEEPALIVE
 lv_coord_t lv_img_get_offset_x(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -312,7 +312,7 @@ lv_coord_t lv_img_get_offset_x(lv_obj_t * obj)
 
     return img->offset.x;
 }
-
+EMSCRIPTEN_KEEPALIVE
 lv_coord_t lv_img_get_offset_y(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -321,7 +321,7 @@ lv_coord_t lv_img_get_offset_y(lv_obj_t * obj)
 
     return img->offset.y;
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_img_get_angle(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -330,7 +330,7 @@ uint16_t lv_img_get_angle(lv_obj_t * obj)
 
     return img->angle;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_img_get_pivot(lv_obj_t * obj, lv_point_t * pivot)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -339,7 +339,7 @@ void lv_img_get_pivot(lv_obj_t * obj, lv_point_t * pivot)
 
     *pivot = img->pivot;
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_img_get_zoom(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -348,7 +348,7 @@ uint16_t lv_img_get_zoom(lv_obj_t * obj)
 
     return img->zoom;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_img_get_antialias(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

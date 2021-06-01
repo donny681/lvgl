@@ -2,6 +2,7 @@
  * @file lv_arc.c
  *
  */
+EMSCRIPTEN_KEEPALIVE
 
 /*********************
  *      INCLUDES
@@ -14,7 +15,7 @@
 #include "../misc/lv_assert.h"
 #include "../misc/lv_math.h"
 #include "../draw/lv_draw_arc.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -62,6 +63,7 @@ const lv_obj_class_t lv_arc_class  = {
  * @param par pointer to an object, it will be the parent of the new arc
  * @return pointer to the created arc
  */
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_arc_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -78,6 +80,7 @@ lv_obj_t * lv_arc_create(lv_obj_t * parent)
  * New object specific "add" or "remove" functions come here
  */
 
+
 /*=====================
  * Setter functions
  *====================*/
@@ -87,6 +90,7 @@ lv_obj_t * lv_arc_create(lv_obj_t * parent)
  * @param arc pointer to an arc object
  * @param start the start angle [0..360]
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_start_angle(lv_obj_t * obj, uint16_t start)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -121,6 +125,7 @@ void lv_arc_set_start_angle(lv_obj_t * obj, uint16_t start)
  * @param arc pointer to an arc object
  * @param start the start angle [0..360]
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_end_angle(lv_obj_t * obj, uint16_t end)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -154,6 +159,7 @@ void lv_arc_set_end_angle(lv_obj_t * obj, uint16_t end)
  * @param start the start angle
  * @param end the end angle
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_angles(lv_obj_t * obj, uint16_t start, uint16_t end)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -175,6 +181,7 @@ void lv_arc_set_angles(lv_obj_t * obj, uint16_t start, uint16_t end)
  * @param arc pointer to an arc object
  * @param start the start angle
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_bg_start_angle(lv_obj_t * obj, uint16_t start)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -209,6 +216,7 @@ void lv_arc_set_bg_start_angle(lv_obj_t * obj, uint16_t start)
  * @param arc pointer to an arc object
  * @param end the end angle
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_bg_end_angle(lv_obj_t * obj, uint16_t end)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -245,6 +253,7 @@ void lv_arc_set_bg_end_angle(lv_obj_t * obj, uint16_t end)
  * @param start the start angle
  * @param end the end angle
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_bg_angles(lv_obj_t * obj, uint16_t start, uint16_t end)
 {
 
@@ -269,6 +278,7 @@ void lv_arc_set_bg_angles(lv_obj_t * obj, uint16_t start, uint16_t end)
  * @param arc pointer to an arc object
  * @param rotation rotation angle
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_rotation(lv_obj_t * obj, uint16_t rotation)
 {
 
@@ -285,6 +295,7 @@ void lv_arc_set_rotation(lv_obj_t * obj, uint16_t rotation)
  * @param arc pointer to arc object
  * @param type arc type
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_mode(lv_obj_t * obj, lv_arc_mode_t type)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -319,6 +330,7 @@ void lv_arc_set_mode(lv_obj_t * obj, lv_arc_mode_t type)
  * @param arc pointer to a arc object
  * @param value new value
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_value(lv_obj_t * obj, int16_t value)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -342,6 +354,7 @@ void lv_arc_set_value(lv_obj_t * obj, int16_t value)
  * @param min minimum value
  * @param max maximum value
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_range(lv_obj_t * obj, int16_t min, int16_t max)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -368,6 +381,7 @@ void lv_arc_set_range(lv_obj_t * obj, int16_t min, int16_t max)
  * @param arc pointer to a arc object
  * @param threshold increment threshold
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_arc_set_change_rate(lv_obj_t * obj, uint16_t rate)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -385,6 +399,7 @@ void lv_arc_set_change_rate(lv_obj_t * obj, uint16_t rate)
  * @param arc pointer to an arc object
  * @return the start angle [0..360]
  */
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_arc_get_angle_start(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -396,6 +411,7 @@ uint16_t lv_arc_get_angle_start(lv_obj_t * obj)
  * @param arc pointer to an arc object
  * @return the end angle [0..360]
  */
+EMSCRIPTEN_KEEPALIVE
  uint16_t lv_arc_get_angle_end(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -407,6 +423,7 @@ uint16_t lv_arc_get_angle_start(lv_obj_t * obj)
  * @param arc pointer to an arc object
  * @return the start angle [0..360]
  */
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_arc_get_bg_angle_start(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -418,6 +435,7 @@ uint16_t lv_arc_get_bg_angle_start(lv_obj_t * obj)
  * @param arc pointer to an arc object
  * @return the end angle [0..360]
  */
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_arc_get_bg_angle_end(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -430,6 +448,7 @@ uint16_t lv_arc_get_bg_angle_end(lv_obj_t * obj)
  * @param arc pointer to a arc object
  * @return the value of the arc
  */
+EMSCRIPTEN_KEEPALIVE
 int16_t lv_arc_get_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -441,6 +460,7 @@ int16_t lv_arc_get_value(const lv_obj_t * obj)
  * @param arc pointer to a arc object
  * @return the minimum value of the arc
  */
+EMSCRIPTEN_KEEPALIVE
 int16_t lv_arc_get_min_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -452,6 +472,7 @@ int16_t lv_arc_get_min_value(const lv_obj_t * obj)
  * @param arc pointer to a arc object
  * @return the maximum value of the arc
  */
+EMSCRIPTEN_KEEPALIVE
 int16_t lv_arc_get_max_value(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -463,6 +484,7 @@ int16_t lv_arc_get_max_value(const lv_obj_t * obj)
  * @param arc pointer to a arc object
  * @return arc type
  */
+EMSCRIPTEN_KEEPALIVE
 lv_arc_mode_t lv_arc_get_mode(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

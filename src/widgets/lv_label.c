@@ -17,7 +17,7 @@
 #include "../misc/lv_bidi.h"
 #include "../misc/lv_txt_ap.h"
 #include "../misc/lv_printf.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -69,7 +69,7 @@ const lv_obj_class_t lv_label_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_label_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -81,7 +81,7 @@ lv_obj_t * lv_label_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_set_text(lv_obj_t * obj, const char * text)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -143,7 +143,7 @@ void lv_label_set_text(lv_obj_t * obj, const char * text)
 
     lv_label_refr_text(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_set_text_fmt(lv_obj_t * obj, const char * fmt, ...)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -171,7 +171,7 @@ void lv_label_set_text_fmt(lv_obj_t * obj, const char * fmt, ...)
 
     lv_label_refr_text(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_set_text_static(lv_obj_t * obj, const char * text)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -189,7 +189,7 @@ void lv_label_set_text_static(lv_obj_t * obj, const char * text)
 
     lv_label_refr_text(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_set_long_mode(lv_obj_t * obj, lv_label_long_mode_t long_mode)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -215,7 +215,7 @@ void lv_label_set_long_mode(lv_obj_t * obj, lv_label_long_mode_t long_mode)
     label->long_mode = long_mode;
     lv_label_refr_text(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_set_recolor(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -228,7 +228,7 @@ void lv_label_set_recolor(lv_obj_t * obj, bool en)
     /*Refresh the text because the potential color codes in text needs to be hidden or revealed*/
     lv_label_refr_text(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_set_text_sel_start(lv_obj_t * obj, uint32_t index)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -242,7 +242,7 @@ void lv_label_set_text_sel_start(lv_obj_t * obj, uint32_t index)
     (void)index;    /*Unused*/
 #endif
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_set_text_sel_end(lv_obj_t * obj, uint32_t index)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -260,21 +260,21 @@ void lv_label_set_text_sel_end(lv_obj_t * obj, uint32_t index)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 char * lv_label_get_text(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     lv_label_t * label = (lv_label_t *)obj;
     return label->text;
 }
-
+EMSCRIPTEN_KEEPALIVE
 lv_label_long_mode_t lv_label_get_long_mode(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     lv_label_t * label = (lv_label_t *)obj;
     return label->long_mode;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_label_get_recolor(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -282,7 +282,7 @@ bool lv_label_get_recolor(const lv_obj_t * obj)
     lv_label_t * label = (lv_label_t *)obj;
     return label->recolor == 0 ? false : true;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_get_letter_pos(const lv_obj_t * obj, uint32_t char_id, lv_point_t * pos)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -525,7 +525,7 @@ uint32_t lv_label_get_letter_on(const lv_obj_t * obj, lv_point_t * pos_in)
 
     return  logical_pos + _lv_txt_encoded_get_char_id(txt, line_start);
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_label_is_char_under_pos(const lv_obj_t * obj, lv_point_t * pos)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -643,7 +643,7 @@ uint32_t lv_label_get_text_selection_end(const lv_obj_t * obj)
 /*=====================
  * Other functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_ins_text(lv_obj_t * obj, uint32_t pos, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -682,7 +682,7 @@ void lv_label_ins_text(lv_obj_t * obj, uint32_t pos, const char * txt)
 #endif
     lv_label_set_text(obj, NULL);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_label_cut_text(lv_obj_t * obj, uint32_t pos, uint32_t cnt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);

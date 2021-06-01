@@ -13,7 +13,7 @@
 #include "../misc/lv_txt_ap.h"
 #include "../core/lv_group.h"
 #include "../draw/lv_draw.h"
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -52,7 +52,7 @@ const lv_obj_class_t lv_checkbox_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_checkbox_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -64,7 +64,7 @@ lv_obj_t * lv_checkbox_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_checkbox_set_text(lv_obj_t * obj, const char * txt)
 {
     lv_checkbox_t * cb = (lv_checkbox_t *)obj;
@@ -86,7 +86,7 @@ void lv_checkbox_set_text(lv_obj_t * obj, const char * txt)
 
     lv_obj_refresh_self_size(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_checkbox_set_text_static(lv_obj_t * obj, const char * txt)
 {
     lv_checkbox_t * cb = (lv_checkbox_t *)obj;
@@ -102,7 +102,7 @@ void lv_checkbox_set_text_static(lv_obj_t * obj, const char * txt)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_checkbox_get_text(const lv_obj_t * obj)
 {
     lv_checkbox_t * cb = (lv_checkbox_t *)obj;

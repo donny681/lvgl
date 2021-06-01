@@ -20,7 +20,7 @@
 #include "../misc/lv_math.h"
 #include "../misc/lv_txt_ap.h"
 #include <string.h>
-
+#include<emscripten.h>
 /*********************
  *      DEFINES
  *********************/
@@ -86,7 +86,7 @@ const lv_obj_class_t lv_dropdownlist_class = {
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_dropdown_create(lv_obj_t * parent)
 {
     LV_LOG_INFO("begin")
@@ -98,7 +98,7 @@ lv_obj_t * lv_dropdown_create(lv_obj_t * parent)
 /*=====================
  * Setter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_set_text(lv_obj_t * obj, const char * txt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -109,7 +109,7 @@ void lv_dropdown_set_text(lv_obj_t * obj, const char * txt)
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_set_options(lv_obj_t * obj, const char * options)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -153,7 +153,7 @@ void lv_dropdown_set_options(lv_obj_t * obj, const char * options)
     /*Now the text is dynamically allocated*/
     dropdown->static_txt = 0;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_set_options_static(lv_obj_t * obj, const char * options)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -179,7 +179,7 @@ void lv_dropdown_set_options_static(lv_obj_t * obj, const char * options)
     dropdown->static_txt = 1;
     dropdown->options = (char *)options;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_add_option(lv_obj_t * obj, const char * option, uint32_t pos)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -249,7 +249,7 @@ void lv_dropdown_add_option(lv_obj_t * obj, const char * option, uint32_t pos)
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_clear_options(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -265,7 +265,7 @@ void lv_dropdown_clear_options(lv_obj_t * obj)
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_set_selected(lv_obj_t * obj, uint16_t sel_opt)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -278,7 +278,7 @@ void lv_dropdown_set_selected(lv_obj_t * obj, uint16_t sel_opt)
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_set_dir(lv_obj_t * obj, lv_dir_t dir)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -290,7 +290,7 @@ void lv_dropdown_set_dir(lv_obj_t * obj, lv_dir_t dir)
 
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_set_symbol(lv_obj_t * obj, const void * symbol)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -299,7 +299,7 @@ void lv_dropdown_set_symbol(lv_obj_t * obj, const void * symbol)
     dropdown->symbol = symbol;
     lv_obj_invalidate(obj);
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_set_selected_highlight(lv_obj_t * obj, bool en)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -312,7 +312,7 @@ void lv_dropdown_set_selected_highlight(lv_obj_t * obj, bool en)
 /*=====================
  * Getter functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_dropdown_get_list(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -321,7 +321,7 @@ lv_obj_t * lv_dropdown_get_list(lv_obj_t * obj)
     return dropdown->list;
 
 }
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_dropdown_get_text(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -329,7 +329,7 @@ const char * lv_dropdown_get_text(lv_obj_t * obj)
 
     return dropdown->text;
 }
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_dropdown_get_options(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -337,7 +337,7 @@ const char * lv_dropdown_get_options(const lv_obj_t * obj)
     lv_dropdown_t * dropdown = (lv_dropdown_t *)obj;
     return dropdown->options;
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_dropdown_get_selected(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -346,7 +346,7 @@ uint16_t lv_dropdown_get_selected(const lv_obj_t * obj)
 
     return dropdown->sel_opt_id;
 }
-
+EMSCRIPTEN_KEEPALIVE
 uint16_t lv_dropdown_get_option_cnt(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -355,7 +355,7 @@ uint16_t lv_dropdown_get_option_cnt(const lv_obj_t * obj)
 
     return dropdown->option_cnt;
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_get_selected_str(const lv_obj_t * obj, char * buf, uint32_t buf_size)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -381,21 +381,21 @@ void lv_dropdown_get_selected_str(const lv_obj_t * obj, char * buf, uint32_t buf
 
     buf[c] = '\0';
 }
-
+EMSCRIPTEN_KEEPALIVE
 const char * lv_dropdown_get_symbol(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     lv_dropdown_t * dropdown = (lv_dropdown_t *)obj;
     return dropdown->symbol;
 }
-
+EMSCRIPTEN_KEEPALIVE
 bool lv_dropdown_get_selected_highlight(lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
     lv_dropdown_t * dropdown = (lv_dropdown_t *)obj;
     return dropdown->selected_highlight;
 }
-
+EMSCRIPTEN_KEEPALIVE
 lv_dir_t lv_dropdown_get_dir(const lv_obj_t * obj)
 {
     LV_ASSERT_OBJ(obj, MY_CLASS);
@@ -406,7 +406,7 @@ lv_dir_t lv_dropdown_get_dir(const lv_obj_t * obj)
 /*=====================
  * Other functions
  *====================*/
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_open(lv_obj_t * dropdown_obj)
 {
     lv_dropdown_t * dropdown = (lv_dropdown_t *)dropdown_obj;
@@ -509,7 +509,7 @@ void lv_dropdown_open(lv_obj_t * dropdown_obj)
 
     }
 }
-
+EMSCRIPTEN_KEEPALIVE
 void lv_dropdown_close(lv_obj_t * obj)
 {
     lv_obj_clear_state(obj, LV_STATE_CHECKED);

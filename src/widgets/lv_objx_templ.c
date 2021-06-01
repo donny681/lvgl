@@ -17,6 +17,7 @@
  *      INCLUDES
  *********************/
 #include "../misc/lv_assert.h"
+#include<emscripten.h>
 //#include "lv_templ.h" /*TODO uncomment this*/
 
 #if defined(LV_USE_TEMPL) && LV_USE_TEMPL != 0
@@ -56,6 +57,7 @@ static lv_draw_cb_t ancestor_draw;
  * @param copy pointer to a template object, if not NULL then the new object will be copied from it
  * @return pointer to the created template
  */
+EMSCRIPTEN_KEEPALIVE
 lv_obj_t * lv_templ_create(lv_obj_t * par, const lv_obj_t * copy)
 {
     LV_LOG_TRACE("template create started");
@@ -123,6 +125,7 @@ lv_obj_t * lv_templ_create(lv_obj_t * par, const lv_obj_t * copy)
  * @param type which style should be set
  * @param style pointer to a style
  */
+EMSCRIPTEN_KEEPALIVE
 void lv_templ_set_style(lv_obj_t * templ, lv_templ_style_t type, const lv_style_t * style)
 {
     LV_ASSERT_OBJ(templ, MY_CLASS);
@@ -151,6 +154,7 @@ void lv_templ_set_style(lv_obj_t * templ, lv_templ_style_t type, const lv_style_
  * @param type which style should be get
  * @return style pointer to the style
  */
+EMSCRIPTEN_KEEPALIVE
 lv_style_t * lv_templ_get_style(const lv_obj_t * templ, lv_templ_style_t type)
 {
     LV_ASSERT_OBJ(templ, MY_CLASS);
